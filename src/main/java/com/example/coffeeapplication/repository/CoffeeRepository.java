@@ -51,8 +51,4 @@ public class CoffeeRepository {
 
         coffees.remove(coffee);
     }
-
-
-
-
 }
