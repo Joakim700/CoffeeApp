@@ -2,9 +2,11 @@ package com.example.coffeeapplication.service;
 
 import com.example.coffeeapplication.model.CoffeeModel;
 import com.example.coffeeapplication.repository.CoffeeRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CoffeeService {
 
     private CoffeeRepository coffeeRepository;
