@@ -10,8 +10,10 @@ public class CoffeeModel {
     public CoffeeModel(String coffeeName, String milkType, double coffeePrice) {
         this.coffeeName = coffeeName;
         this.milkType = milkType;
-        this.coffeeName = coffeeName;
+        this.coffeePrice = coffeePrice;
     }
+
+    public CoffeeModel() {}
 
     public String getCoffeeName() {
         return coffeeName;

@@ -9,22 +9,21 @@ import java.util.List;
 @Service
 public class CoffeeService {
 
-    private CoffeeRepository coffeeRepository;
+    private final CoffeeRepository repository;
 
-    public CoffeeService(CoffeeRepository coffeeRepository) {
-        this.coffeeRepository = coffeeRepository;
+    public CoffeeService(CoffeeRepository repository) {
+        this.repository = repository;
     }
 
     public List<CoffeeModel> getAllCoffeesFromMenu() {
-
-        return coffeeRepository.getAllCoffees();
+        return repository.getAllCoffees();
     }
 
     public CoffeeModel getCoffeeByName(String coffeeName) throws Exception {
 
-        CoffeeModel coffeeByName = coffeeRepository.getCoffeeByType(coffeeName);
+        CoffeeModel coffeeByName = repository.getCoffeeByType(coffeeName);
 
-        if (coffeeRepository.getAllCoffees() != null && coffeeByName.getCoffeeName().equals(coffeeName)) {
+        if (repository.getAllCoffees() != null && coffeeByName.getCoffeeName().equals(coffeeName)) {
             return coffeeByName;
         }
         throw new Exception("No such coffee exist");
@@ -32,12 +31,12 @@ public class CoffeeService {
 
     public CoffeeModel addNewCoffeeToMenu(CoffeeModel newCoffee) {
 
-        return coffeeRepository.addNewCoffeeToMenu(newCoffee);
+        return repository.addNewCoffeeToMenu(newCoffee);
     }
 
     public void deleteCoffeeFromMenu(CoffeeModel oldCoffee) {
 
-        coffeeRepository.deleteCoffeeFromMenu(oldCoffee);
+        repository.deleteCoffeeFromMenu(oldCoffee);
     }
 
 }

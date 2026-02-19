@@ -30,7 +30,7 @@ public class CoffeeRepository {
     }
 
     public List<CoffeeModel> getAllCoffees() {
-        return new ArrayList<>();
+        return new ArrayList<>(coffees);
     }
 
     public CoffeeModel getCoffeeByType(String name) throws Exception {
@@ -53,4 +53,7 @@ public class CoffeeRepository {
 
         coffees.remove(coffee);
     }
+
+
+
 }

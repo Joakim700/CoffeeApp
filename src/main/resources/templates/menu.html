@@ -1,16 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>menu</title>
+    <link rel="stylesheet" href="styles.css">
+    <title>Coffee Menu</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; padding: 20px; }
+        .container { max-width: 800px; margin: auto; }
+        .coffee-item {
+            background: white;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .details h3 { margin: 0; color: #4e342e; }
+        .details p { margin: 5px 0 0; color: #795548; font-size: 0.9em; }
+        .price { font-weight: bold; color: #2e7d32; font-size: 1.2em; }
+    </style>
 </head>
+
+<header>
+    <nav>
+        <h1>Coffee MAKE</h1>
+        <ul>
+            <li><a href="#menu">Show Menu</a></li>
+            <li><a href="#order" class="order-btn">Place Order</a></li>
+        </ul>
+    </nav>
+</header>
+
 <body>
+<div class="container">
+    <h1>☕ Our Coffee Menu</h1>
 
-<h1>Coffee Make</h1>
-<h2>MENU</h2>
+    <div class="coffee-item" th:each="coffee : ${showMenu}">
 
+        <div class="details">
+            <h3 th:text="${coffee.coffeeName}">Coffee Name</h3>
 
+            <p>Milk option: <span th:text="${coffee.milkType}">Standard</span></p>
+        </div>
 
+        <div class="price" th:text="${#numbers.formatCurrency(coffee.coffeePrice)}">
+            $0.00
+        </div>
+
+    </div>
+
+    <a class="order-btn">Place Order</a>
+</div>
+
+<footer>
+    <p>&copy; 2026 Coffee MAKE. All rights reserved.</p>
+    <div class="socials">
+        <a href="#">Instagram</a> | <a href="#">Twitter</a>
+    </div>
+</footer>
 
 </body>
 </html>
