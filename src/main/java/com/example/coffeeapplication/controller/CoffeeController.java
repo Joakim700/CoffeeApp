@@ -5,6 +5,8 @@ import com.example.coffeeapplication.service.CoffeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 @RequestMapping("/coffee")
 public class CoffeeController {
 
-    private CoffeeService service;
+    private final CoffeeService service;
 
     public CoffeeController(CoffeeService coffeeService) {
         this.service = coffeeService;
@@ -23,16 +25,24 @@ public class CoffeeController {
     public String showMenu(Model model) {
 
         List<CoffeeModel> menu = service.getAllCoffeesFromMenu();
-        model.addAttribute("Menu", menu);
+        model.addAttribute("showMenu", menu);
         return "menu";
     }
 
+    @GetMapping("/order")
+    public String makeOrder(Model model) {
 
+        CoffeeModel coffee = new CoffeeModel();
+        model.addAttribute("makeCoffee", coffee);
+        return "menu";
+    }
 
+    @PostMapping("/order")
+    public String placeOrder(@ModelAttribute CoffeeModel coffeeModel) {
 
-
-
-
+        service.addNewCoffeeToMenu(coffeeModel);
+        return "order-confirmation";
+    }
 
 
 }
