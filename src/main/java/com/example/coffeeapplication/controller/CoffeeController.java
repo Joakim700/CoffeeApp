@@ -1,5 +1,4 @@
 package com.example.coffeeapplication.controller;
-
 import com.example.coffeeapplication.model.CoffeeModel;
 import com.example.coffeeapplication.service.CoffeeService;
 import org.springframework.stereotype.Controller;
@@ -8,17 +7,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
 
 @Controller
-@RequestMapping("/coffee")
+@RequestMapping("/make")
 public class CoffeeController {
 
     private final CoffeeService service;
 
     public CoffeeController(CoffeeService coffeeService) {
         this.service = coffeeService;
+    }
+
+    @GetMapping("/homepage")
+    public String showHomePage() {
+        return "index";
     }
 
     @GetMapping("/menu")
@@ -44,5 +47,12 @@ public class CoffeeController {
         return "order-confirmation";
     }
 
+
+    @PostMapping("/delete")
+    public String deleteOrder(@ModelAttribute CoffeeModel coffeeModel) {
+
+        service.deleteCoffeeFromMenu(coffeeModel);
+        return "delete-coffee";
+    }
 
 }

@@ -1,65 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles.css">
-    <title>Coffee Menu</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; padding: 20px; }
-        .container { max-width: 800px; margin: auto; }
-        .coffee-item {
-            background: white;
-            margin-bottom: 10px;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .details h3 { margin: 0; color: #4e342e; }
-        .details p { margin: 5px 0 0; color: #795548; font-size: 0.9em; }
-        .price { font-weight: bold; color: #2e7d32; font-size: 1.2em; }
-    </style>
-</head>
+<div th:replace="~{layout :: layout(~{::section})}">
 
-<header>
-    <nav>
-        <h1>Coffee MAKE</h1>
-        <ul>
-            <li><a href="#menu">Show Menu</a></li>
-            <li><a href="#order" class="order-btn">Place Order</a></li>
-        </ul>
-    </nav>
-</header>
-
-<body>
-<div class="container">
-    <h1>☕ Our Coffee Menu</h1>
-
-    <div class="coffee-item" th:each="coffee : ${showMenu}">
-
-        <div class="details">
-            <h3 th:text="${coffee.coffeeName}">Coffee Name</h3>
-
-            <p>Milk option: <span th:text="${coffee.milkType}">Standard</span></p>
+    <section class="max-w-4xl mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-2">☕ Our Coffee Menu</h1>
+            <p class="text-gray-600">Freshly roasted and prepared just for you.</p>
         </div>
 
-        <div class="price" th:text="${#numbers.formatCurrency(coffee.coffeePrice)}">
-            $0.00
+        <div class="grid gap-6 md:grid-cols-2">
+            <div th:each="coffee : ${showMenu}"
+                 class="bg-white p-6 rounded-2xl shadow-sm border border-gray-10 shadow-orange-50/50 flex justify-between items-center hover:shadow-md transition-shadow">
+
+                <div class="details">
+                    <h3 class="text-xl font-bold text-gray-800" th:text="${coffee.coffeeName}">Coffee Name</h3>
+                    <p class="text-sm text-gray-500 mt-1">
+                        Milk option: <span class="font-medium text-orange-700" th:text="${coffee.milkType}">Standard</span>
+                    </p>
+                </div>
+
+                <div class="text-lg font-bold text-gray-900 bg-orange-50 px-4 py-2 rounded-lg"
+                     th:text="${#numbers.formatCurrency(coffee.coffeePrice)}">
+                    $0.00
+                </div>
+            </div>
         </div>
 
-    </div>
+        <div class="mt-16 text-center">
+            <a href="/" class="inline-block bg-orange-600 text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-orange-700 hover:-translate-y-1 transition-all shadow-lg shadow-orange-200">
+                Place Your Order
+            </a>
+        </div>
+    </section>
 
-    <a class="order-btn">Place Order</a>
 </div>
-
-<footer>
-    <p>&copy; 2026 Coffee MAKE. All rights reserved.</p>
-    <div class="socials">
-        <a href="#">Instagram</a> | <a href="#">Twitter</a>
-    </div>
-</footer>
-
-</body>
 </html>

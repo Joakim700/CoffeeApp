@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header th:fragment="header" class="bg-slate-900 text-white p-4 shadow-md">
+    <nav class="container mx-auto flex justify-between items-center">
+        <h1>Coffee MAKE</h1>
+        <ul>
+            <li><a th:href="@{/make/menu}" class="hover:text-orange-300">Show Menu</a></li>
+            <li><a href="/" class="hover:text-blue-400">Place Order</a></li>
+        </ul>
+    </nav>
+</header>
+
+</body>
+</html>

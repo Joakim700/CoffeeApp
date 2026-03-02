@@ -3,7 +3,6 @@ package com.example.coffeeapplication.repository;
 import com.example.coffeeapplication.model.CoffeeModel;
 import com.example.coffeeapplication.service.CoffeeService;
 import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +52,15 @@ public class CoffeeRepository {
 
         coffees.remove(coffee);
     }
+
+//    public CoffeeModel updateCoffeePrice(CoffeeModel model, Double updatePrice, Double oldPrice) {
+//
+//        for (CoffeeModel coffee : coffees) {
+//
+//            if ()
+//        }
+//
+//    }
 
 
 
