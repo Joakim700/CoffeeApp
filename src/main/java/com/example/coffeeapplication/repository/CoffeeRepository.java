@@ -1,7 +1,6 @@
 package com.example.coffeeapplication.repository;
 
 import com.example.coffeeapplication.model.CoffeeModel;
-import com.example.coffeeapplication.service.CoffeeService;
 import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +41,9 @@ public class CoffeeRepository {
         } throw new Exception("No coffee exist by that name");
     }
 
-    public CoffeeModel addNewCoffeeToMenu(CoffeeModel newCoffee) {
+    public void addNewCoffeeToMenu(CoffeeModel coffeeModel) {
 
-        coffees.add(newCoffee);
-        return newCoffee;
+        coffees.add(coffeeModel);
     }
 
     public void deleteCoffeeFromMenu(CoffeeModel coffee) {

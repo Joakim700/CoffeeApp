@@ -29,9 +29,9 @@ public class CoffeeService {
         throw new Exception("No such coffee exist");
     }
 
-    public CoffeeModel addNewCoffeeToMenu(CoffeeModel newCoffee) {
+    public void addNewCoffeeToMenu(CoffeeModel coffeeModel) {
 
-        return repository.addNewCoffeeToMenu(newCoffee);
+        repository.addNewCoffeeToMenu(coffeeModel);
     }
 
     public void deleteCoffeeFromMenu(CoffeeModel oldCoffee) {
@@ -40,3 +40,6 @@ public class CoffeeService {
     }
 
 }
+
+
+// CREATE; READ; UPDATE; DELETE;

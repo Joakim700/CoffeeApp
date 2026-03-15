@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/make")
+@RequestMapping("/Lorista")
 public class CoffeeController {
 
     private final CoffeeService service;
@@ -26,10 +26,23 @@ public class CoffeeController {
 
     @GetMapping("/menu")
     public String showMenu(Model model) {
-
         List<CoffeeModel> menu = service.getAllCoffeesFromMenu();
         model.addAttribute("showMenu", menu);
         return "menu";
+    }
+
+    @GetMapping("/add")
+    public String addCoffeeToMenu(Model model) {
+        CoffeeModel coffeeModel = new CoffeeModel();
+        service.addNewCoffeeToMenu(coffeeModel);
+        model.addAttribute("newCoffee", coffeeModel);
+        return "add-new-coffee";
+    }
+
+    @PostMapping("/add-new-coffee")
+    public String addNewCoffeeToMenu(@ModelAttribute CoffeeModel coffeeModel) {
+        service.addNewCoffeeToMenu(coffeeModel);
+        return "redirect:/Lorista/menu";
     }
 
     @GetMapping("/order")
