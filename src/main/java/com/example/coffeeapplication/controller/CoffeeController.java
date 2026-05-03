@@ -10,49 +10,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/make")
+@RequestMapping("/Lorista")
 public class CoffeeController {
 
-    private final CoffeeService service;
+    private final CoffeeService coffeeService;
 
     public CoffeeController(CoffeeService coffeeService) {
-        this.service = coffeeService;
+        this.coffeeService = coffeeService;
     }
 
     @GetMapping("/homepage")
     public String showHomePage() {
         return "index";
-    }
-
-    @GetMapping("/menu")
-    public String showMenu(Model model) {
-
-        List<CoffeeModel> menu = service.getAllCoffeesFromMenu();
-        model.addAttribute("showMenu", menu);
-        return "menu";
-    }
-
-    @GetMapping("/order")
-    public String makeOrder(Model model) {
-
-        CoffeeModel coffee = new CoffeeModel();
-        model.addAttribute("makeCoffee", coffee);
-        return "menu";
-    }
-
-    @PostMapping("/order")
-    public String placeOrder(@ModelAttribute CoffeeModel coffeeModel) {
-
-        service.addNewCoffeeToMenu(coffeeModel);
-        return "order-confirmation";
-    }
-
-
-    @PostMapping("/delete")
-    public String deleteOrder(@ModelAttribute CoffeeModel coffeeModel) {
-
-        service.deleteCoffeeFromMenu(coffeeModel);
-        return "delete-coffee";
     }
 
 }

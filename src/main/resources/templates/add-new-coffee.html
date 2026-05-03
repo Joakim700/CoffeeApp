@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+    <meta charset="UTF-8">
+    <title>add-new-coffee</title>
+    <link th:href="@{/css/main.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+
+<form action="#" th:action="@{/Lorista/add-new-coffee}" th:object="${newCoffee}" method="post">
+
+    <label>Coffee Name</label>
+        <input type="text" th:field="*{coffeeName}">
+            <br>
+
+    <label>Milk Type</label>
+        <input type="text" th:field="*{milkType}">
+            <br>
+
+    <label>Price</label>
+        <input type="number" th:field="*{coffeePrice}">
+            <br>
+
+    <label><strong>Add Coffee To Menu</strong></label>
+    <button type="submit">ENTER</button>
+</form>
+
+<div th:replace="~{fragments/footer :: footer}"></div>
+</body>
+</html>
