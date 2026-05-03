@@ -13,59 +13,15 @@ import java.util.List;
 @RequestMapping("/Lorista")
 public class CoffeeController {
 
-    private final CoffeeService service;
+    private final CoffeeService coffeeService;
 
     public CoffeeController(CoffeeService coffeeService) {
-        this.service = coffeeService;
+        this.coffeeService = coffeeService;
     }
 
     @GetMapping("/homepage")
     public String showHomePage() {
         return "index";
-    }
-
-    @GetMapping("/menu")
-    public String showMenu(Model model) {
-        List<CoffeeModel> menu = service.getAllCoffeesFromMenu();
-        model.addAttribute("showMenu", menu);
-        return "menu";
-    }
-
-    @GetMapping("/add")
-    public String addCoffeeToMenu(Model model) {
-        CoffeeModel coffeeModel = new CoffeeModel();
-        service.addNewCoffeeToMenu(coffeeModel);
-        model.addAttribute("newCoffee", coffeeModel);
-        return "add-new-coffee";
-    }
-
-    @PostMapping("/add-new-coffee")
-    public String addNewCoffeeToMenu(@ModelAttribute CoffeeModel coffeeModel) {
-        service.addNewCoffeeToMenu(coffeeModel);
-        return "redirect:/Lorista/menu";
-    }
-
-    @GetMapping("/order")
-    public String makeOrder(Model model) {
-
-        CoffeeModel coffee = new CoffeeModel();
-        model.addAttribute("makeCoffee", coffee);
-        return "menu";
-    }
-
-    @PostMapping("/order")
-    public String placeOrder(@ModelAttribute CoffeeModel coffeeModel) {
-
-        service.addNewCoffeeToMenu(coffeeModel);
-        return "order-confirmation";
-    }
-
-
-    @PostMapping("/delete")
-    public String deleteOrder(@ModelAttribute CoffeeModel coffeeModel) {
-
-        service.deleteCoffeeFromMenu(coffeeModel);
-        return "delete-coffee";
     }
 
 }
